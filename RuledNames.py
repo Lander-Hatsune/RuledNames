@@ -1,6 +1,6 @@
 import random
-from dataclasses import dataclass
 from typing import Union
+from dataclasses import dataclass
 
 OPTIONAL_REJECT_PROB = 0.5
 
@@ -60,17 +60,24 @@ class Rule:
         return RuleSeq(self, r)
 
 
-class O(Rule):
+def O(selection):
     """
     Optional rule
     """
-
-    def __init__(self, selection):
-        super().__init__(selection, True)
+    return Rule(selection, True)    
 
 
-class N(Rule):
+def N(selection):
     """
     Necessary rule
     """
-    ...
+    return Rule(selection, False)
+
+
+class NameGen:
+    def __init__(self, rules, dict_):
+        self.rules = rules
+        self.dict_ = dict_
+
+    def gen(self):
+        return str(random.choice(self.rules)).format(**self.dict_)
