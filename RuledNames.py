@@ -8,6 +8,8 @@ OPTIONAL_REJECT_PROB = 0.5
 class RuleSeq:
     """
     Sequence of `Rule`/`RuleSeq`, concatenated
+
+    `list` is treated as `Rule`(Necessary) by default, use RuleSeq() to indicate a `RuleSeq`.
     """
 
     def __init__(self, *seq):
